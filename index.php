@@ -11,7 +11,7 @@
 			<script>
 			
 			nsql.setDB(nosql_data);
-			nsql.getFieldsBySql("select id, first_name, AGe from tbl_persons");
+			nsql.getFieldsBySql("select id, first_name, age from tbl_persons");
 			//console.log( nsql.getSQL() )
 
 
