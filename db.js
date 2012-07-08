@@ -1,6 +1,6 @@
 nosql_data = {
 	"tbl_persons" : [
-		{ 'id':1, 'last_name':'golan', 'first_name':'shany','address':'abcd','city':'netanya','age':29 },
-		{ 'id':2, 'last_name':'azra', 'first_name':'niso','address':'aasdasbcd','city':'ramat gan','age':31 }
+		{ 'id':1, 'last_name':'g', 'first_name':'s','address':'abcd','city':'n','age':29 },
+		{ 'id':2, 'last_name':'a', 'first_name':'n','address':'aasdasbcd','city':'r','age':31 }
 	]
 };
