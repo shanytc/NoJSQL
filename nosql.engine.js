@@ -20,7 +20,7 @@ var nsql = {
 		if(typeof sql != "undefined" && sql.length){
 			this.sql = this.trim(sql);
 			this.fixSQL(); // make sure sql is valid
-			this.parseSQL();
+			return this.parseSQL();
 		}
 		return null;
 	},
@@ -83,7 +83,7 @@ var nsql = {
 				
 			}
 		}
-		console.log(results);
+		//console.log(results);
 		if(results.length){
 			return results;
 		}
@@ -120,7 +120,11 @@ var nsql = {
 			// ORDER BY is [optional]
 
 			db_data = this.getDataFromDB(from,columns);
+			if(db_data.length){
+				return db_data;
+			}
 
+			return null;
 		} // end of SELECT Statement
 	}
 }
