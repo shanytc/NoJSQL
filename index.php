@@ -3,7 +3,6 @@
 		<link rel="stylesheet" href="main.css" type="text/css"/>
 		<script type="text/javascript" src="nosql.engine.js"></script>
 		<script type="text/javascript" src="db.js"></script>
-		<script>document.write('<script src="http://dt:35729/livereload.js?snipver=1"></' + 'script>')</script>
 	</head>
 	<body>
 		
@@ -12,7 +11,7 @@
 			<script>
 			
 			nsql.setDB(nosql_data);
-			results = nsql.getFieldsBySql("select id, first_name, age from tbl_persons order by id, city");
+			results = nsql.getFieldsBySql("select id, first_name, age from tbl_persons order by id desc, city");
 			console.log( results )
 
 

@@ -24,8 +24,8 @@ var nsql = {
 		}
 		return null;
 	},
-	log: function(log){ console.log(log) },
-	err: function(err){ console.error(err) },
+	log: function(log){ console.log(logs); },
+	err: function(err){ console.error(err); },
 	getSQL: function(){ return this.sql; },
 	setSQL: function(sql){ this.sql = sql; },
 	parseSelectQuery: function(sql){
@@ -46,21 +46,53 @@ var nsql = {
 		return null;
 	},
 	findDuplicates: function(arr) {
-		 var i,
-	      len=arr.length,
-	      out=[],
-	      obj={};
+		var i,
+		len=arr.length,
+		out=[],
+		obj={};
 
-	  for (i=0;i<len;i++) {
-	    obj[arr[i]]=0;
-	  }
-	  for (i in obj) {
-	    out.push(i);
-	  }
-	  return out;
+		for (i=0;i<len;i++) {
+			obj[arr[i]]=0;
+		}
+		for (i in obj) {
+			out.push(i);
+		}
+		return out;
 	},
-	parseOrderBy: function(fields,table){
+	parseOrderBy: function(sql,table){
+		orderByPos=-1;
+		for(i=0; i<sql.length ;i++){
+			if(this.trim(sql[i].toLowerCase())=="order"){
+				orderByPos=i;
+				break;
+			}
+		}
+
+		if(orderByPos==-1){
+			return null;
+		}
+		orderByPos+=2;
+
+		//check for limit clause
+		limitPos=-1;
+		for(i=0; i<sql.length ;i++){
+			if(this.trim(sql[i].toLowerCase())=="limit"){
+				limitPos=i;
+				break;
+			}
+		}
+		if(limitPos==-1){
+			orderByEnd=sql.length;
+		}else{
+			orderByEnd=limitPos;
+		}
+		fields='';
+		for(i=orderByPos; i<orderByEnd ;i++){
+			fields+=sql[i]+' ';
+		}
+		fields = this.trim(fields);
 		fields = fields.split(',');
+
 		if(fields.length){
 			// test found fields against the columns in our table
 			db = this.getDB()[from];
@@ -69,17 +101,28 @@ var nsql = {
 				for(colName in db[data]){
 					unique_names.push(colName);
 				}
-				
 			} // end of for
 			
 			unique_names = this.findDuplicates(unique_names);
+			sorting=[];
 			errors=[];
 			for(f in fields){
 				field=fields[f];
-				if(unique_names.indexOf(field)==-1)errors.push(field);
+				field = field.split(' ');
+				if(typeof field[1] != "undefined" && field[1].length){ // has asc or dec?
+					if(this.trim(field[1].toLowerCase())=='asc'){
+						sorting.push({'field':field[0],'pos':1});
+					}else{
+						sorting.push({'field':field[0],'pos':0});
+					}
+				}else{ // default sort is always asc
+					sorting.push({'field':field[0],'pos':1});
+				}
+				if(unique_names.indexOf(field[0])==-1)errors.push(field);
 			}
+
 			if(!errors.length){
-				return [fields,0];
+				return [sorting,0];
 			}
 
 			return [errors,1];
@@ -96,10 +139,11 @@ var nsql = {
 		}
 		return null;
 	},
-	getDataFromDB: function(from, columns){
+	getDataFromDB: function(from, columns,orderby){
 		db = this.getDB()[from];
 		results=[];
-		//console.log(db)
+		console.log(orderby);
+		
 		if(columns[1]){ // uses *
 			for (data in db){
 				results[data]=[];
@@ -166,6 +210,7 @@ var nsql = {
 				
 				switch(optional){
 					case "order":{
+
 						if( !(typeof sql[5] != "undefined" && sql[5].length && this.trim(sql[5].toLowerCase())=='by') ){
 							this.err('missing \'by\' in order field. sql query: "' + this.getSQL()+'"');
 							return null;
@@ -174,8 +219,7 @@ var nsql = {
 							this.err('missing \'field or fields\' of order by in sql query: "' + this.getSQL()+'"');
 							return null;
 						}
-
-						orderBy=this.parseOrderBy(sql[6],from);
+						orderBy=this.parseOrderBy(sql,from);
 						if(orderBy[1]){
 							orderBy = orderBy[0].join(', ');
 							this.err('Unknown column(s) \''+orderBy+'\' in order by at "' + this.getSQL()+'"');
@@ -185,9 +229,8 @@ var nsql = {
 					break;
 				}
 			}
-			
 
-			db_data = this.getDataFromDB(from,columns);
+			db_data = this.getDataFromDB(from,columns,orderBy[0]);
 			if(db_data.length){
 				return db_data;
 			}
