@@ -45,6 +45,48 @@ var nsql = {
 		}
 		return null;
 	},
+	findDuplicates: function(arr) {
+		 var i,
+	      len=arr.length,
+	      out=[],
+	      obj={};
+
+	  for (i=0;i<len;i++) {
+	    obj[arr[i]]=0;
+	  }
+	  for (i in obj) {
+	    out.push(i);
+	  }
+	  return out;
+	},
+	parseOrderBy: function(fields,table){
+		fields = fields.split(',');
+		if(fields.length){
+			// test found fields against the columns in our table
+			db = this.getDB()[from];
+			unique_names=[];
+			for (data in db){
+				for(colName in db[data]){
+					unique_names.push(colName);
+				}
+				
+			} // end of for
+			
+			unique_names = this.findDuplicates(unique_names);
+			errors=[];
+			for(f in fields){
+				field=fields[f];
+				if(unique_names.indexOf(field)==-1)errors.push(field);
+			}
+			if(!errors.length){
+				return [fields,0];
+			}
+
+			return [errors,1];
+		}
+
+		return null;
+	},
 	parseSqlFromTable : function(sql){
 		if(typeof sql[3] != "undefined" && sql[3].length){
 			from = this.trim(sql[3].toLowerCase());
@@ -101,23 +143,49 @@ var nsql = {
 			// Get the columns
 			columns = this.parseSelectQuery(sql);
 			if(columns == null){
-				this.err('no select fields found in the sql query: "' + this.getSQL()+'"');
+				this.err('no select fields found in sql query: "' + this.getSQL()+'"');
 				return null;
 			}
 			// Get 'from'
 			if(this.trim(sql[2].toLowerCase())!='from'){
-				this.err('missing \'from\' in your sql query: "' + this.getSQL()+'"');
+				this.err('missing \'from\' in sql query: "' + this.getSQL()+'"');
 				return null;
 			}
 			from = this.parseSqlFromTable(sql); // get table name
 			if(columns == null){
-				this.err('missing \'table name\' found in the sql query: "' + this.getSQL()+'"');
+				this.err('missing \'table name\' in the sql query: "' + this.getSQL()+'"');
 				return null;
 			}
 			
 			// WHERE is [optional]
-
 			// ORDER BY is [optional]
+			// LIMIT X
+
+			if(typeof sql[4] != "undefined" && sql[4].length){
+				optional = this.trim(sql[4].toLowerCase());
+				
+				switch(optional){
+					case "order":{
+						if( !(typeof sql[5] != "undefined" && sql[5].length && this.trim(sql[5].toLowerCase())=='by') ){
+							this.err('missing \'by\' in order field. sql query: "' + this.getSQL()+'"');
+							return null;
+						}
+						if(!(typeof sql[6] != "undefined" && sql[6].length)){
+							this.err('missing \'field or fields\' of order by in sql query: "' + this.getSQL()+'"');
+							return null;
+						}
+
+						orderBy=this.parseOrderBy(sql[6],from);
+						if(orderBy[1]){
+							orderBy = orderBy[0].join(', ');
+							this.err('Unknown column(s) \''+orderBy+'\' in order by at "' + this.getSQL()+'"');
+							return null;
+						}
+					}
+					break;
+				}
+			}
+			
 
 			db_data = this.getDataFromDB(from,columns);
 			if(db_data.length){
