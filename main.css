@@ -1,0 +1,23 @@
+#editor{
+
+	font-size: 20px;
+	padding: 5px;
+}
+
+#db_results{
+	margin-top:10px;
+	width:100%;
+	border:1px black solid;
+	border-collapse: 0px;
+}
+
+#db_results td{
+	border-right: 1px black solid;
+	border-bottom: 1px black solid;
+	padding: 5px;
+	text-align: center;
+}
+#db_results th{
+	border-bottom: 1px black solid;
+	border-right: 1px black solid;
+}

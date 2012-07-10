@@ -1,6 +1,8 @@
 var nsql = {
 	db : null,
 	sql: null,
+	include_headers: true,
+
 	setDB: function(db){
 		if(typeof db != "undefined"){
 			this.db = db;
@@ -193,13 +195,14 @@ var nsql = {
 					}
 				}
 			}
-			return results;
+			return [columns,results];
 		}
 
 		return null;
 	},
 	fixSQL: function(){
 		sql = this.getSQL().replace(/, /ig,',');
+		sql = sql.replace(/(\r\n|\n|\r)/gm,"");
 		this.setSQL(sql);
 	},
 	parseSQL : function(){

@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"field",
+				"fieldpos"
+			],
+			[
+				"order",
+				"orderby"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"lmi",
+				"limitPos"
+			],
+			[
+				"limit",
+				"limitPos"
+			],
+			[
+				"orderb",
+				"orderByPos"
+			],
+			[
 				"cons",
 				"columns"
 			],
@@ -39,7 +63,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 472,
+				"buffer_size": 598,
 				"line_ending": "Windows"
 			}
 		},
@@ -47,23 +71,15 @@
 			"file": "db.js",
 			"settings":
 			{
-				"buffer_size": 227,
+				"buffer_size": 328,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 137,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "nosql.engine.js",
 			"settings":
 			{
-				"buffer_size": 4686,
+				"buffer_size": 6378,
 				"line_ending": "Windows"
 			}
 		}
@@ -71,9 +87,29 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 27.0,
+		"height": 205.0,
 		"selected_items":
 		[
+			[
+				"each",
+				"Snippet: $.each"
+			],
+			[
+				"read	",
+				"Snippet: jQuery ready function"
+			],
+			[
+				"doc	",
+				"Snippet: document-ready"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"jqu",
+				"Snippet: jQuery ready function"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
@@ -84,10 +120,6 @@
 			],
 			[
 				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"insta",
 				"Package Control: Install Package"
 			],
 			[
@@ -107,7 +139,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 579.0
+		"width": 602.0
 	},
 	"console":
 	{
@@ -124,6 +156,10 @@
 	},
 	"file_history":
 	[
+		"/Users/shanytc/Sites/NoSql/README",
+		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/Default (OSX).sublime-keymap",
+		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
 		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/Alignment/Base File.sublime-settings",
 		"/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
@@ -148,6 +184,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"asc",
+			"();\n",
+			"asc",
+			"element_a",
+			"2",
 			"BitTorrent",
 			"bit",
 			"bitto",
@@ -184,15 +225,15 @@
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 472,
+						"buffer_size": 598,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								276,
-								276
+								448,
+								448
 							]
 						],
 						"settings":
@@ -245,7 +286,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": true,
+								"browser": false,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -284,7 +325,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 103.0,
+						"translation.y": 106.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -292,7 +333,7 @@
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -300,15 +341,15 @@
 					"file": "db.js",
 					"settings":
 					{
-						"buffer_size": 227,
+						"buffer_size": 328,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								71,
-								71
+								328,
+								0
 							]
 						],
 						"settings":
@@ -361,7 +402,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": true,
+								"browser": false,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -403,115 +444,6 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/shanytc/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								134,
-								134
-							]
-						],
-						"settings":
-						{
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"text-indent": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": false,
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"Python Django": "python"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
 				}
 			]
 		},
@@ -520,19 +452,19 @@
 			"sheets":
 			[
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "nosql.engine.js",
 					"settings":
 					{
-						"buffer_size": 4686,
+						"buffer_size": 6378,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4522,
-								4522
+								6342,
+								6342
 							]
 						],
 						"settings":
@@ -585,7 +517,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": true,
+								"browser": false,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -624,7 +556,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2457.0,
+						"translation.y": 3607.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -672,7 +604,7 @@
 		[
 			0.0,
 			0.33,
-			0.485663812633,
+			0.499309261587,
 			1.0
 		]
 	},
