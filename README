@@ -1,0 +1,15 @@
+----- READ ME FOR NO-JSQL -----
+
+NOJSQL Is a library that mimics mySql db commands on a local JSON db representation.
+the NOJSQL Engine v1.0 Supports this <Commands>:
+
+- SELECT <field(s)> FROM <table> ORDER BY <field(s)>
+
+<Missing Commands>
+WHERE clause is missing
+INNER JOIN clause is missing.
+LIMIT <X>; is missing.
+Functions are missing.
+and more...
+
+Hopefully this library will help people when they need noSql support with mySql implementation on their sites.
