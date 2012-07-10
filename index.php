@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="main.css" type="text/css"/>
+		<script type="text/javascript" src="jquery-1.7.2.min"></script>
 		<script type="text/javascript" src="nosql.engine.js"></script>
 		<script type="text/javascript" src="db.js"></script>
 	</head>
@@ -10,10 +11,13 @@
 			<h1>NoJSQL Engine</h1>
 			<script>
 			
-			nsql.setDB(nosql_data);
-			results = nsql.getFieldsBySql("select id, first_name, age from tbl_persons order by id desc, city");
-			console.log( results )
-
+			$(function() {
+				nsql.setDB(nosql_data);
+				results = nsql.getFieldsBySql("select id,age,address from persons order by id asc");
+				$.each(results, function(index, val) {
+					console.log(val);
+				});
+			});
 
 			</script>
 
