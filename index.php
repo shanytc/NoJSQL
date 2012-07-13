@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<link rel="stylesheet" href="main.css" type="text/css"/>
@@ -7,13 +8,14 @@
 
 		<script>
 			$(function() {
-				nsql.setDB(nosql_data);
+				nojsql.setDB(nosql_data); // set database
 				sql=$('#editor').val();
-				results = nsql.getFieldsBySql(sql);
-				console.log(results);
+				results = nojsql.getFieldsBySql(sql); // get results
+
 				formatResults(results);
 
 				function formatResults(results){
+					if(!results.length) return;
 					$('#results').html('');
 					$('#results').append('<table cellspacing="0" cellpadding="0" id="db_results"></table>');
 					$.each(results[0], function(index, val) {
@@ -31,7 +33,7 @@
 
 				$('#go').live('click',function(){
 					sql=$('#editor').val();
-					results = nsql.getFieldsBySql(sql);
+					results = nojsql.getFieldsBySql(sql);
 					formatResults(results);
 				});
 			});
@@ -43,9 +45,12 @@
 			<h1>NoJSQL Engine</h1>
 		</div>
 		<div id="sqlEditor">
-			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address 
+			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age 
 FROM persons 
-ORDER BY id asc</textarea>
+where persons = 1  
+ORDER BY age asc, id desc 
+LIMIT 6;
+</textarea>
 			<input type="button"  value="GO" id="go">
 		</div>
 		<div id="results"></div>

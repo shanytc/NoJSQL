@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"te",
+				"text	@=text"
+			],
+			[
 				"field",
 				"fieldpos"
 			],
@@ -63,8 +79,16 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 598,
+				"buffer_size": 1430,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main.css",
+			"settings":
+			{
+				"buffer_size": 342,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -79,7 +103,7 @@
 			"file": "nosql.engine.js",
 			"settings":
 			{
-				"buffer_size": 6378,
+				"buffer_size": 6455,
 				"line_ending": "Windows"
 			}
 		}
@@ -87,9 +111,21 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 205.0,
+		"height": 238.0,
 		"selected_items":
 		[
+			[
+				"click",
+				"Snippet: jQuery click handler"
+			],
+			[
+				"click	",
+				"Snippet: jQuery click handler"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
 			[
 				"each",
 				"Snippet: $.each"
@@ -129,10 +165,6 @@
 			[
 				"php",
 				"Set Syntax: PHP"
-			],
-			[
-				"html",
-				"Set Syntax: HTML"
 			],
 			[
 				"ins",
@@ -225,15 +257,15 @@
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 598,
+						"buffer_size": 1430,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								448,
-								448
+								549,
+								549
 							]
 						],
 						"settings":
@@ -321,11 +353,121 @@
 								"Python Django": "python"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 26.0,
+						"translation.y": 184.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.css",
+					"settings":
+					{
+						"buffer_size": 342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								221,
+								221
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": false,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 0.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 106.0,
+						"translation.y": 58.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -337,7 +479,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "db.js",
 					"settings":
 					{
@@ -348,8 +490,8 @@
 						"selection":
 						[
 							[
-								328,
-								0
+								290,
+								290
 							]
 						],
 						"settings":
@@ -452,19 +594,19 @@
 			"sheets":
 			[
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "nosql.engine.js",
 					"settings":
 					{
-						"buffer_size": 6378,
+						"buffer_size": 6455,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6342,
-								6342
+								4489,
+								4489
 							]
 						],
 						"settings":
@@ -556,7 +698,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3607.0,
+						"translation.y": 2697.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
