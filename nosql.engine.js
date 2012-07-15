@@ -101,21 +101,40 @@ var nojsql = {
 		for(j=0;j<db.length;j++){
 			data=[];
 			for(i=0;i<select.length;i++){
-				data.push(db[j][select[i]]+'');
+				data.push(db[j][select[i]]);
 			}
 			results.push(data);
 		}
 		for(i=0;i<orderby.length;i++){
-			field = orderby[i][0];
+			field = orderby[i][0]; // order column
 			byPos = orderby[i][1];
+
+			// get column position
+			field_pos = -1;
+			for(j=0;j<select.length;j++){
+				if( this.trim(field) == this.trim(select[j]) ) {
+					field_pos = j;
+					break;
+				}
+			}
+
+			if(field_pos==-1) continue; // on error (no column found) skip sort.
 
 			if(byPos){
 				results.sort(function (element_a, element_b){
-				    return element_a[field].toString() > element_b[field].toString();
+					if(typeof element_a[field_pos] == "number"){
+						return (element_a[field_pos] - element_b[field_pos]);
+					}else{
+				    	return element_a[field_pos].toString() > element_b[field_pos].toString();
+					}
 				});
 			}else{
 				results.sort(function (element_a, element_b){
-				    return element_b[field].toString() > element_a[field].toString();
+					if(typeof element_b[field_pos] == "number"){
+						return (element_b[field_pos] - element_a[field_pos]);
+					}else{
+				   		return element_b[field_pos].toString() > element_a[field_pos].toString();
+					}
 				});
 			}
 		}
@@ -203,9 +222,9 @@ var nojsql = {
 				if(order[1]=='desc'){
 					o=0;
 				}
-				newOrderBy.push([i,o]);
+				newOrderBy.push([order[0],o]);
 			}else{
-				newOrderBy.push([i,1]);
+				newOrderBy.push([order[0],1]);
 			}
 		}
 		if(!(typeof newOrderBy != "undefined" && newOrderBy.length)){
