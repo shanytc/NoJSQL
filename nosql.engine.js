@@ -105,6 +105,7 @@ var nojsql = {
 			}
 			results.push(data);
 		}
+
 		for(i=0;i<orderby.length;i++){
 			field = orderby[i][0]; // order column
 			byPos = orderby[i][1];
@@ -120,23 +121,32 @@ var nojsql = {
 
 			if(field_pos==-1) continue; // on error (no column found) skip sort.
 
-			if(byPos){
+			if(byPos){ // asc
 				results.sort(function (element_a, element_b){
+					function cmp(x,y){
+						return x > y? 1 : x < y ? -1 : 0;
+					}
 					if(typeof element_a[field_pos] == "number"){
 						return (element_a[field_pos] - element_b[field_pos]);
 					}else{
-				    	return element_a[field_pos].toString() > element_b[field_pos].toString();
+						 return cmp(element_a[field_pos], element_b[field_pos]) < cmp(element_b[field_pos], element_a[field_pos]) ? -1 : 1;
 					}
 				});
-			}else{
+			}else{ // desc
 				results.sort(function (element_a, element_b){
+					function cmp(x,y){
+						return x > y? 1 : x < y ? -1 : 0;
+					}
 					if(typeof element_b[field_pos] == "number"){
 						return (element_b[field_pos] - element_a[field_pos]);
 					}else{
-				   		return element_b[field_pos].toString() > element_a[field_pos].toString();
+				   		return -cmp(element_a[field_pos], element_b[field_pos]) < -cmp(element_b[field_pos], element_a[field_pos]) ? -1 : 1;
 					}
 				});
 			}
+
+			// sort on columns a ascending and b descending
+		    // return [cmp(x.a, y.a), -cmp(x.b, y.b)] < [cmp(y.a, x.a), -cmp(y.b,x.b)] ? -1:1;
 		}
 
 		if(limit>0){

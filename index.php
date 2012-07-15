@@ -63,7 +63,7 @@
 FROM persons 
 where persons = 1  
 ORDER BY id asc 
-LIMIT 6;
+LIMIT 10;
 </textarea>
 			<input type="button" value="GO" id="go">
 		</div>
