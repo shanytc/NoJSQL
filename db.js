@@ -1,7 +1,7 @@
 nosql_data = {
 	"persons" : [
-		{ 'id':1, 'last_name':'aname1', 'first_name':'cfname1','address':'abcd','city':'city1','age':29 },
-		{ 'id':1, 'last_name':'bname2', 'first_name':'bfname1','address':'basdasbcd','city':'city2','age':31 },
+		{ 'id':1, 'last_name':'aname1', 'first_name':'cfname1','address':'abcd','city':'city1','age':29.3 },
+		{ 'id':1, 'last_name':'bname2', 'first_name':'bfname1','address':'basdasbcd','city':'city2','age':29.3 },
 		{ 'id':1, 'last_name':'cname3', 'first_name':'afname2','address':'xx','city':'city3','age':5 },
 		{ 'id':2, 'last_name':'cname4', 'first_name':'afname2','address':'ff','city':'city4','age':34 },
 		{ 'id':2, 'last_name':'cname5', 'first_name':'afname2','address':'aa','city':'city5','age':23 },

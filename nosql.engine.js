@@ -107,13 +107,21 @@ var nojsql = {
 
 			if(byPos){ // asc
 				if( typeof db[field] == 'number' ){
-					params.push(field);
+					if(db[field]%1!==0){ // float
+						params.push({name:field,primer: parseFloat, reverse:false});
+					}else{
+						params.push(field);
+					}
 				}else{
-					params.push({name:field,reverse:false});
+					params.push({name:field,reverse:false}); // string
 				}
-			}else{
+			}else{ // desc
 				if( typeof db[field] == 'number' ){
-					params.push({name:field,primer: parseInt, reverse:true});
+					if(db[field]%1!==0){ // float
+						params.push({name:field,primer: parseFloat, reverse:true});
+					}else{
+						params.push({name:field,primer: parseInt, reverse:true});
+					}
 				}else{
 					params.push({name:field,reverse:true});
 				}
@@ -148,7 +156,7 @@ var nojsql = {
 		errors=[];
 		for(j=0;j<db.length;j++){
 			for(i=0;i<select.length;i++){
-				if( !( typeof db[j][select[i]] != "undefined" ) ){
+				if( typeof db[j][select[i]]=="undefined" ){
 					errors.push(select[i]);
 				}
 			}
@@ -186,7 +194,7 @@ var nojsql = {
 			console.error('missing limit <> in selected query, showing all.');
 			return -1;
 		}
-		return parseInt(limit);
+		return parseInt(limit,10);
 	},
 	getOrderBy: function(){
 		sql = this.getSQL();

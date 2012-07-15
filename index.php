@@ -27,6 +27,7 @@
 					
 					if(results[0].length){
 						$('#results').append('<table cellspacing="0" cellpadding="0" id="db_results"></table>');
+						$("#db_results").append('<th class="row">#</th>');
 						$.each(results[0], function(index, val) {
 							$("#db_results").append('<th>'+val.toUpperCase()+'</th>');
 						});
@@ -36,6 +37,7 @@
 					if(results[1].length){
 						$.each(results[1], function(index, val) {
 							$('#db_results').append('<tr></tr>');
+							$('#db_results tr:last').append('<td class="row">'+(index+1)+'</td>');
 							$.each(val, function(i, v) {
 								$('#db_results tr:last').append('<td>'+v+'</td>');
 							});
@@ -62,7 +64,7 @@
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
 where persons = 1  
-ORDER BY id asc, address asc
+ORDER BY id asc, age desc
 LIMIT 10;
 </textarea>
 			<input type="button" value="GO" id="go">

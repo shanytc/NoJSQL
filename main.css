@@ -1,5 +1,4 @@
 #editor{
-
 	font-size: 20px;
 	padding: 5px;
 }
@@ -18,9 +17,26 @@
 	padding: 5px;
 	text-align: center;
 }
+
+#db_results td.row{
+	border-right: 1px black solid;
+	border-bottom: 1px black solid;
+	padding: 5px;
+	text-align: center;
+	background:#666;
+	width:5%;
+}
+
 #db_results th{
 	border-bottom: 1px black solid;
 	border-right: 1px black solid;
+	background: #AAA;
+}
+
+#db_results th.row{
+	border-bottom: 1px black solid;
+	border-right: 1px black solid;
+	background:#888;
 }
 
 #errors{
