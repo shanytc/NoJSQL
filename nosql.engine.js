@@ -45,9 +45,6 @@ var nojsql = {
 		}
 		return out;
 	},
-	assert	: function(val){
-
-	},
 	getFieldsBySql : function(sql){
 		if(typeof sql != "undefined" && sql.length){
 			this.sql = this.trim(sql).toLowerCase();
@@ -76,6 +73,9 @@ var nojsql = {
 			return [[],[],this.errors];
 		}
 
+		// WHERE
+		where = this.getWhere();
+
 		// ORDER Statement
 		orderby = this.getOrderBy();
 		if(!orderby.length){
@@ -84,7 +84,7 @@ var nojsql = {
 
 		// LIMIT
 		limit = this.getLimit();
-		if(!limit){
+		if(limit==-1){
 			return [[],[],this.errors];
 		}
 		
@@ -144,8 +144,21 @@ var nojsql = {
 			return [[],[],this.errors];
 		}
 		
-		if(limit>0){
-			results = results.slice(0,limit);
+		if(typeof limit == 'number'){ // limit <x>
+			if(limit>0){
+				results = results.slice(0,limit);
+			}
+		}else{
+			// limit <x>,<y>
+			limit = limit.split(',');
+			a=parseInt(this.trim(limit[0]),10);
+			b=parseInt(this.trim(limit[1]),10);
+			if(a<b){
+				results = results.slice(a,b);
+			}else{
+				this.errors.push('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
+				console.error('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
+			}
 		}
 
 		return [select,results,this.errors];
@@ -178,13 +191,44 @@ var nojsql = {
 		}
 		return true;
 	},
+	getWhere: function(){
+		sql = this.getSQL();
+		sql = sql.replace(/order\sby(.*)/g,'');
+		sql = sql.replace(/limit\s(.*)/g,'');
+		sql = sql.replace(/fields\sby(.*)/g,'');
+
+		// temp fix special keywords
+		sql = sql.replace(/([0-9]+)\sand\s([0-9]+)/g,'$1-and-$2'); // between
+
+		var regex=/where\s.*/g;
+		if(!regex.test(sql)){
+			this.errors.push('invalid \'where\' statement in selected query');
+			console.error('invalid \'where\' statement in selected query');
+			return [];
+		}
+		var where = this.trim(sql.match(regex)[0].replace(/where\s/,''));
+		where = where.split(/and\s/);
+		if(!(typeof where != "undefined" && where.length)){
+			this.errors.push('missing \'where\' fields in selected query');
+			console.error('missing \'where\' fields in selected query');
+			return [];
+		}
+		errors=[];
+		where_commands = [];
+		for (var i = 0; i < where.length; i++) {
+			w = this.trim(where[i].replace(/-/g,' '));
+			w = w.split(' ');
+			// check for valid where command
+			// must have [ column - command - set ] format!?
+		}
+	},
 	getLimit: function(){
 		sql = this.getSQL();
-		var regex=/limit\s([0-9]+\;|[0-9]+)/g;
+		var regex=/limit\s([0-9]+\;|[0-9]+,[0-9]+\;)/g;
 		if(!regex.test(sql)){
 			if(sql.indexOf('limit')!=-1){
-				this.errors.push('invalid limit <> in selected query. showing all.');
-				console.error('invalid limit <> in selected query. showing all.');
+				this.errors.push('invalid \'limit <>\' in selected query. showing all.');
+				console.error('invalid \'limit <>\' in selected query. showing all.');
 			}
 			return -1;
 		}
@@ -194,7 +238,11 @@ var nojsql = {
 			console.error('missing limit <> in selected query, showing all.');
 			return -1;
 		}
-		return parseInt(limit,10);
+		if(typeof limit != 'number'){
+			return limit;
+		}else{
+			return parseInt(limit,10);
+		}
 	},
 	getOrderBy: function(){
 		sql = this.getSQL();
@@ -203,8 +251,8 @@ var nojsql = {
 
 		var regex=/order\sby\s.*/g;
 		if(!regex.test(sql)){
-			this.errors.push('invalid order by statement in selected query');
-			console.error('invalid order by statement in selected query');
+			this.errors.push('invalid \'order by\' statement in selected query');
+			console.error('invalid \'order by\' statement in selected query');
 			return [];
 		}
 		var orderby = this.trim(sql.match(regex)[0].replace(/order\sby/,''));

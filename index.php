@@ -63,9 +63,9 @@
 			SQL Editor:
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
-where persons = 1  
+where id >= 1 and age between 10 and 20
 ORDER BY id asc, age desc
-LIMIT 10;
+LIMIT 0,12;
 </textarea>
 			<input type="button" value="GO" id="go">
 		</div>

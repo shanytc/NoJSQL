@@ -1,0 +1,7 @@
+## Add 'DISTINCT' support in SELECT clause.
+## Add 'AS' support for column names.
+## Add . Support for column names (table prefix)
+## Add LIMIT BY <x>,<y> to control results from accurately.
+
+
+-- reference: http://dev.mysql.com/doc/refman/5.0/en/select.html
