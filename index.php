@@ -62,7 +62,7 @@
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
 where persons = 1  
-ORDER BY id asc 
+ORDER BY id asc, address asc
 LIMIT 10;
 </textarea>
 			<input type="button" value="GO" id="go">

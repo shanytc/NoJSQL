@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"order",
+				"orderby"
+			],
+			[
+				"field",
+				"field_pos"
+			],
+			[
+				"selec",
+				"select"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"get",
+				"getDB  (function)"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"gett",
+				"getTableColumns"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
 				"border",
 				"border-bottom"
 			],
@@ -18,14 +50,6 @@
 			[
 				"te",
 				"text	@=text"
-			],
-			[
-				"field",
-				"fieldpos"
-			],
-			[
-				"order",
-				"orderby"
 			],
 			[
 				"len",
@@ -46,10 +70,6 @@
 			[
 				"cons",
 				"columns"
-			],
-			[
-				"get",
-				"getSQL  (function)"
 			],
 			[
 				"print",
@@ -79,7 +99,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 1430,
+				"buffer_size": 1857,
 				"line_ending": "Windows"
 			}
 		},
@@ -87,7 +107,7 @@
 			"file": "main.css",
 			"settings":
 			{
-				"buffer_size": 342,
+				"buffer_size": 466,
 				"line_ending": "Unix"
 			}
 		},
@@ -95,7 +115,7 @@
 			"file": "db.js",
 			"settings":
 			{
-				"buffer_size": 328,
+				"buffer_size": 1670,
 				"line_ending": "Windows"
 			}
 		},
@@ -103,7 +123,7 @@
 			"file": "nosql.engine.js",
 			"settings":
 			{
-				"buffer_size": 6455,
+				"buffer_size": 8736,
 				"line_ending": "Windows"
 			}
 		}
@@ -111,7 +131,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 238.0,
+		"height": 368.0,
 		"selected_items":
 		[
 			[
@@ -171,7 +191,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 602.0
+		"width": 585.0
 	},
 	"console":
 	{
@@ -216,6 +236,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			",'');\n",
+			"errors",
+			"button",
+			"textarea",
+			" \n",
+			"errors",
+			"\n			<input type=\"button",
+			"console.",
+			"personss",
+			"parseSelectQuery",
+			"parseSqlFromTable",
+			"console.log",
 			"asc",
 			"();\n",
 			"asc",
@@ -257,15 +289,15 @@
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 1430,
+						"buffer_size": 1857,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								549,
-								549
+								1720,
+								1720
 							]
 						],
 						"settings":
@@ -357,8 +389,8 @@
 							"translate_tabs_to_spaces": false,
 							"word_wrap": false
 						},
-						"translation.x": 26.0,
-						"translation.y": 184.0,
+						"translation.x": 0.0,
+						"translation.y": 877.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -368,15 +400,15 @@
 					"file": "main.css",
 					"settings":
 					{
-						"buffer_size": 342,
+						"buffer_size": 466,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								221,
-								221
+								412,
+								412
 							]
 						],
 						"settings":
@@ -464,10 +496,11 @@
 								"Python Django": "python"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 58.0,
+						"translation.y": 163.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -483,15 +516,15 @@
 					"file": "db.js",
 					"settings":
 					{
-						"buffer_size": 328,
+						"buffer_size": 1670,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								290,
-								290
+								951,
+								951
 							]
 						],
 						"settings":
@@ -582,7 +615,7 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 22.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -598,15 +631,15 @@
 					"file": "nosql.engine.js",
 					"settings":
 					{
-						"buffer_size": 6455,
+						"buffer_size": 8736,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4489,
-								4489
+								2538,
+								2538
 							]
 						],
 						"settings":
@@ -698,7 +731,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2697.0,
+						"translation.y": 1399.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -745,7 +778,7 @@
 		"rows":
 		[
 			0.0,
-			0.33,
+			0.178343383529,
 			0.499309261587,
 			1.0
 		]

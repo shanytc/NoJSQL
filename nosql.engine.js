@@ -93,10 +93,36 @@ var nojsql = {
 		return results; // remove this line
 	},
 	getDataFromDB: function(select,from,orderby,limit){
-		db = this.getDB()[from];
-		if(!select.length){
+		params = [];
+		if(!this.getDB()[from].length){
+			this.errors.push('Table \''+from+'\' has no data in database!.');
+			console.error('Table \''+from+'\' has no data in database!.');
 			return [[],[],this.errors];
 		}
+		db = this.getDB()[from][0];
+
+		for(i=0;i<orderby.length;i++){
+			field = orderby[i][0]; // order column
+			byPos = orderby[i][1];
+
+			if(byPos){ // asc
+				if( typeof db[field] == 'number' ){
+					params.push(field);
+				}else{
+					params.push({name:field,reverse:false});
+				}
+			}else{
+				if( typeof db[field] == 'number' ){
+					params.push({name:field,primer: parseInt, reverse:true});
+				}else{
+					params.push({name:field,reverse:true});
+				}
+			}
+
+		}
+
+		db = this.getDB()[from].sort(sortby.sort_by(params)); // sort the table
+		
 		results = [];
 		for(j=0;j<db.length;j++){
 			data=[];
@@ -106,49 +132,10 @@ var nojsql = {
 			results.push(data);
 		}
 
-		for(i=0;i<orderby.length;i++){
-			field = orderby[i][0]; // order column
-			byPos = orderby[i][1];
-
-			// get column position
-			field_pos = -1;
-			for(j=0;j<select.length;j++){
-				if( this.trim(field) == this.trim(select[j]) ) {
-					field_pos = j;
-					break;
-				}
-			}
-
-			if(field_pos==-1) continue; // on error (no column found) skip sort.
-
-			if(byPos){ // asc
-				results.sort(function (element_a, element_b){
-					function cmp(x,y){
-						return x > y? 1 : x < y ? -1 : 0;
-					}
-					if(typeof element_a[field_pos] == "number"){
-						return (element_a[field_pos] - element_b[field_pos]);
-					}else{
-						 return cmp(element_a[field_pos], element_b[field_pos]) < cmp(element_b[field_pos], element_a[field_pos]) ? -1 : 1;
-					}
-				});
-			}else{ // desc
-				results.sort(function (element_a, element_b){
-					function cmp(x,y){
-						return x > y? 1 : x < y ? -1 : 0;
-					}
-					if(typeof element_b[field_pos] == "number"){
-						return (element_b[field_pos] - element_a[field_pos]);
-					}else{
-				   		return -cmp(element_a[field_pos], element_b[field_pos]) < -cmp(element_b[field_pos], element_a[field_pos]) ? -1 : 1;
-					}
-				});
-			}
-
-			// sort on columns a ascending and b descending
-		    // return [cmp(x.a, y.a), -cmp(x.b, y.b)] < [cmp(y.a, x.a), -cmp(y.b,x.b)] ? -1:1;
+		if(!select.length){
+			return [[],[],this.errors];
 		}
-
+		
 		if(limit>0){
 			results = results.slice(0,limit);
 		}
@@ -315,6 +302,67 @@ var nojsql = {
 			}
 		}
 		return columns; // remove this line
+	}
+};
+
+// multisort code
+var sortby = {
+	// utility functions
+	default_cmp: function(a, b) {
+		if (a == b) return 0;
+		return a < b ? -1 : 1;
+	},
+	getCmpFunc: function(primer, reverse) {
+		var cmp = sortby.default_cmp;
+		if (primer) {
+			cmp = function(a, b) {
+				return sortby.default_cmp(primer(a), primer(b));
+			};
+		}
+		if (reverse) {
+			return function(a, b) {
+				return -1 * cmp(a, b);
+			};
+		}
+		return cmp;
+	},
+
+	// actual implementation
+	sort_by: function(obj) {
+		var fields = [],
+		n_fields = obj.length,
+		field, name, reverse, cmp;
+
+		// preprocess sorting options
+		for (var i = 0; i < n_fields; i++) {
+			field = obj[i];
+			if (typeof field === 'string') {
+				name = field;
+				cmp = sortby.default_cmp;
+			}
+			else{
+				name = field.name;
+				cmp = sortby.getCmpFunc(field.primer, field.reverse);
+			}
+			fields.push({
+				name: name,
+				cmp: cmp
+			});
+		}
+
+		return function(A, B) {
+			var a, b, name, cmp, result;
+			for (var i = 0, l = n_fields; i < l; i++) {
+				result = 0;
+				field = fields[i];
+				name = field.name;
+				cmp = field.cmp;
+
+				result = cmp(A[name], B[name]);
+				if (result !== 0) break;
+			}
+			return result;
+		};
 	}
 };
 
