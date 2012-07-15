@@ -7,7 +7,8 @@
 #db_results{
 	margin-top:10px;
 	width:100%;
-	border:1px black solid;
+	border-top:1px black solid;
+	border-left:1px black solid;
 	border-collapse: 0px;
 }
 
@@ -20,4 +21,14 @@
 #db_results th{
 	border-bottom: 1px black solid;
 	border-right: 1px black solid;
+}
+
+#errors{
+	color:red;
+	font-size:20px;
+}
+
+#go{
+	font: bold 18px Verdana;
+	padding: 8px;
 }
