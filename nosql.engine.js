@@ -144,15 +144,19 @@ var nojsql = {
 			return [[],[],this.errors];
 		}
 		
-		if(typeof limit == 'number'){ // limit <x>
-			if(limit>0){
-				results = results.slice(0,limit);
-			}
+		// limit <x>,<y>
+		limit = limit.split(',');
+		if(limit.length==1){
+			a=0;
+			b=parseInt(this.trim(limit[0]),10);
 		}else{
-			// limit <x>,<y>
-			limit = limit.split(',');
 			a=parseInt(this.trim(limit[0]),10);
 			b=parseInt(this.trim(limit[1]),10);
+		}
+		
+		if(!a && !b){
+			results = [];
+		}else{
 			if(a<b){
 				results = results.slice(a,b);
 			}else{
@@ -218,6 +222,7 @@ var nojsql = {
 		for (var i = 0; i < where.length; i++) {
 			w = this.trim(where[i].replace(/-/g,' '));
 			w = w.split(' ');
+			console.log(w);
 			// check for valid where command
 			// must have [ column - command - set ] format!?
 		}
@@ -238,11 +243,7 @@ var nojsql = {
 			console.error('missing limit <> in selected query, showing all.');
 			return -1;
 		}
-		if(typeof limit != 'number'){
-			return limit;
-		}else{
-			return parseInt(limit,10);
-		}
+		return limit;
 	},
 	getOrderBy: function(){
 		sql = this.getSQL();
