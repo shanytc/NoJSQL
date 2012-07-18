@@ -63,7 +63,7 @@
 			SQL Editor:
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
-where id >= 1 and age between 10 and 20
+where id - and age between 10 and 20
 ORDER BY id asc, age desc
 LIMIT 0,12;
 </textarea>

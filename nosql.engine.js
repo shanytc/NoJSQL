@@ -202,7 +202,7 @@ var nojsql = {
 		sql = sql.replace(/fields\sby(.*)/g,'');
 
 		// temp fix special keywords
-		sql = sql.replace(/([0-9]+)\sand\s([0-9]+)/g,'$1-and-$2'); // between
+		sql = sql.replace(/([0-9]+)\sand\s([0-9]+)/g,'$1#and#$2'); // between
 
 		var regex=/where\s.*/g;
 		if(!regex.test(sql)){
@@ -217,15 +217,44 @@ var nojsql = {
 			console.error('missing \'where\' fields in selected query');
 			return [];
 		}
-		errors=[];
+
 		where_commands = [];
-		for (var i = 0; i < where.length; i++) {
-			w = this.trim(where[i].replace(/-/g,' '));
+		for (var i = 0; i < where.length; i++) { // loop commands
+			w = this.trim(where[i].replace(/#/g,' '));
 			w = w.split(' ');
-			console.log(w);
+			if(w.length<=2){ // checking for missing value in a command
+				if(w.length==2){
+					if( /[a-zA-Z]/g.test(w[0]) && /[>=<]/g.test(w[1]) ){
+						this.errors.push(w[0]+' is missing value to compare with in WHERE clause at selected query.');
+						console.error(w[0]+' is missing value to compare with in WHERE clause at selected query.');
+					}
+					
+					if( /[a-zA-Z]/g.test(w[0]) && !(/[>=<]/g.test(w[1])) ){
+						this.errors.push('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (command #'+(i+1)+').');
+						console.error('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (command #'+(i+1)+').');
+					
+					}
+				}
+				if(w.length==1){
+					// if field is a 'number', than it can be <field> treated as >=1 (true)
+					// if this field is a 'string' it can be <field> != ''
+					
+					// test against table
+					db = this.getDB()[this.getTable()][0]; // get first row
+					if(typeof db[w[0]] == 'number'){
+						w = [w[0],'>=','1'];
+					}else{ // assume string
+						w = [w[0],'!=',"''"];
+					}
+					where_commands.push(w);
+				}
+			}else{
+				where_commands.push(w);
+			}
 			// check for valid where command
 			// must have [ column - command - set ] format!?
 		}
+		console.log(where_commands);
 	},
 	getLimit: function(){
 		sql = this.getSQL();
