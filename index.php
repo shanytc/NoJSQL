@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="db.js"></script>
 
 		<script>
+
 			$(function() {
 				nojsql.setDB(nosql_data); // set database
 				sql=$('#editor').val();
@@ -51,6 +52,25 @@
 						});
 					}
 				}
+
+				/*
+				// file read and save for future INSERT/UPDATE MySQL commands (?)
+				window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+				xhr=new XMLHttpRequest();
+				xhr.open("GET",'db.js',true);
+				xhr.onreadystatechange = function(){
+					if (xhr.readyState===4 && xhr.status==200) {
+						file=xhr.responseText;
+						$('#dbEditor').val(file);
+
+						var bb = new BlobBuilder;
+						bb.append($('#dbEditor').val().toString());
+						var blob = bb.getBlob("application/text;charset=" + document.characterSet);
+						//saveAs(blob, "document.js");
+					};
+				}
+				xhr.send(null);
+				*/
 			});
 		</script>
 	</head>
@@ -59,11 +79,12 @@
 		<div id="main">
 			<h1>NoJSQL Engine</h1>
 		</div>
+		<textarea id="dbEditor"></textarea>
 		<div id="sqlEditor">
 			SQL Editor:
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
-where id - and age between 10 and 20
+where id > 5 and id ? 4
 ORDER BY id asc, age desc
 LIMIT 0,12;
 </textarea>

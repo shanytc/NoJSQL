@@ -3,6 +3,10 @@
 	padding: 5px;
 }
 
+#dbEditor{
+	width:100%;
+}
+
 #db_results{
 	margin-top:10px;
 	width:100%;
