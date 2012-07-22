@@ -84,7 +84,7 @@
 			SQL Editor:
 			<textarea id="editor" style="width:100%; height:120px;">SELECT id,age,address
 FROM persons 
-where id > 5 and id ? 4
+where (id like 'This is a test') and (age like "is another test you know") and (x >= 4)
 ORDER BY id asc, age desc
 LIMIT 0,12;
 </textarea>

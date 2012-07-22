@@ -185,6 +185,14 @@ var nojsql = {
 		}
 		return []; // remove this line
 	},
+	testColumnAgainstDB: function(column){
+		db = this.getDB()[this.getTable()]; // get first row
+		if( db.length && typeof db[0][w[0]] !== "undefined" ){
+			return true;
+		}
+
+		return false;
+	},
 	testTableAgainstDB: function(){
 		db = this.getDB();
 		table = this.getTable();
@@ -202,8 +210,21 @@ var nojsql = {
 		sql = sql.replace(/fields\sby(.*)/g,'');
 
 		// temp fix special keywords
-		sql = sql.replace(/([0-9]+)\sand\s([0-9]+)/g,'$1#and#$2'); // between
+		sql = sql.replace(/([0-9]+)\sand\s([0-9]+)/g,'$1#and#$2'); // between <x> and <y>
 
+		if(sql.indexOf('like')!=-1){ // check if WHERE contains LIKE clause
+			sql = sql.replace(/\'/g,'\"');
+			items = [];
+			items = sql.match(/"(.*?)"/g).map(function(i){
+				return [i,i.replace(/\s/g,'#')];
+			});
+			if(items.length){
+				for(i=0;i<items.length;i++){
+					sql = sql.replace(items[i][0],items[i][1]);
+				}
+			}
+		}
+		
 		var regex=/where\s.*/g;
 		if(!regex.test(sql)){
 			this.errors.push('invalid \'where\' statement in selected query');
@@ -222,7 +243,18 @@ var nojsql = {
 		where_commands = [];
 
 		for (var i = 0; i < where.length; i++) { // loop commands
-			w = this.trim(where[i].replace(/#/g,' '));
+			w = this.trim(where[i]);
+
+			// strip away '(' and ')
+			w = w.replace(/\(/g,'');
+			w = w.replace(/\)/g,'');
+
+
+			// bring back between <x>, <y>
+			if(where[i].indexOf('between')!=-1){
+				w = this.trim(where[i].replace(/#/g,' '));
+			}
+
 			w = w.split(' ');
 			if(w.length<=2){ // checking for missing value in a command
 				if(w.length==2){
@@ -256,27 +288,37 @@ var nojsql = {
 						}
 						where_commands.push(w);
 					}else{
-						this.errors.push('\''+w[0]+'\' is an invalid column in table \''+this.getTable()+'\' (WHERE clause command #'+(i+1)+').');
-						console.error('\''+w[0]+'\' is an invalid column in table \''+this.getTable()+'\' (WHERE clause command #'+(i+1)+').');
+						this.errors.push('\''+w[0]+'\' is an invalid column in table \''+this.getTable()+'\' at (selector: "'+(w.join(' '))+'").');
+						console.error('\''+w[0]+'\' is an invalid column in table \''+this.getTable()+'\' at (selector: "'+(w.join(' '))+'").');
 					}
 				}
 			}else{
 				if(w.length==3){ // standard where clause
+
 					if( jQuery.trim(w[2]) === '' ){
-						this.errors.push(w[0]+' is missing value to compare \''+w[1]+'\' with in WHERE clause at selected query (command #'+(i+1)+').');
-						console.error(w[0]+' is missing value to compare \''+w[1]+'\' with in WHERE clause at selected query (command #'+(i+1)+').');
+						this.errors.push(w[0]+' is missing value to compare \''+w[1]+'\' with in WHERE clause at selected query (selector: "'+(w.join(' '))+'").');
+						console.error(w[0]+' is missing value to compare \''+w[1]+'\' with in WHERE clause at selected query (selector: "'+(w.join(' '))+'").');
 						continue;
 					}
 
-					if( validCommand.test(w[1]) === false){
-						if( /^-?[0-9]+$/.test(w[1])){
-							this.errors.push('\''+w[1]+'\' is in the wrong place, missing a selector at selected query (command #'+(i+1)+').');
-							console.error('\''+w[1]+'\' is in the wrong place, missing a selector at selected query (command #'+(i+1)+').');
-						}else{
-							this.errors.push('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (command #'+(i+1)+').');
-							console.error('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (command #'+(i+1)+').');
+					// test for string operations first
+					if( w[1] === 'like'){
+						w[2] = w[2].replace(/#/g,' ');
+						if(w[2].indexOf('"') === -1 || /^".*?"$/.test(w[2]) === false ){
+							this.errors.push(w[2]+': must be encapsulated with \' or " at both sides at selected query (selector: "'+(w.join(' '))+'").');
+							console.error(w[2]+': must be encapsulated with \' or " at both sides at selected query (selector: "'+(w.join(' '))+'").');
 						}
-						continue;
+					}else{
+						if( validCommand.test(w[1]) === false){
+							if( /^-?[0-9]+$/.test(w[1])){
+								this.errors.push('\''+w[1]+'\' is in the wrong place, missing a selector at selected query (selector: "'+(w.join(' '))+'").');
+								console.error('\''+w[1]+'\' is in the wrong place, missing a selector at selected query (selector: "'+(w.join(' '))+'").');
+							}else{
+								this.errors.push('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (selector: "'+(w.join(' '))+'").');
+								console.error('\''+w[1]+'\' is an invalid selector in WHERE clause at selected query (selector: "'+(w.join(' '))+'").');
+							}
+							continue;
+						}
 					}
 
 					where_commands.push(w);
