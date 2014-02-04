@@ -1,4 +1,4 @@
-# READ ME FOR NoJSQL
+# READ ME FOR NoJSQL Project Code
 
 NOJSQL Is a library that mimics mySql commands on a local JSON mySQL DB representation.
 the NOJSQL Engine v1.0 Supports currently these statements:
