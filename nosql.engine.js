@@ -85,7 +85,9 @@ var nojsql = {
 		// LIMIT
 		limit = this.getLimit();
 		if(limit==-1){
-			return [[],[],this.errors];
+			this.errors.push('No limit found. Showing all results.');
+			console.error('No limit found. Showing all results.');
+			//return [[],[],this.errors];
 		}
 		
 		results = this.getDataFromDB(select,from,orderby,limit);
@@ -145,23 +147,27 @@ var nojsql = {
 		}
 		
 		// limit <x>,<y>
-		limit = limit.split(',');
-		if(limit.length==1){
-			a=0;
-			b=parseInt(this.trim(limit[0]),10);
+		if(limit==-1){
+			// assume all results
 		}else{
-			a=parseInt(this.trim(limit[0]),10);
-			b=parseInt(this.trim(limit[1]),10);
-		}
-		
-		if(!a && !b){
-			results = [];
-		}else{
-			if(a<b){
-				results = results.slice(a,b);
+			limit = limit.split(',');
+			if(limit.length==1){
+				a=0;
+				b=parseInt(this.trim(limit[0]),10);
 			}else{
-				this.errors.push('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
-				console.error('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
+				a=parseInt(this.trim(limit[0]),10);
+				b=parseInt(this.trim(limit[1]),10);
+			}
+			
+			if(!a && !b){
+				results = [];
+			}else{
+				if(a<b){
+					results = results.slice(a,b);
+				}else{
+					this.errors.push('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
+					console.error('LIMIT \''+a+'\' must be smaller than \''+b+'\' in selected query. Showing all results.');
+				}
 			}
 		}
 
@@ -275,7 +281,7 @@ var nojsql = {
 					}
 				}
 				if(w.length==1){
-					// if field is a 'number', than it can be <field> treated as >=1 (true)
+					// if field is a 'number', then it can be <field> treated as >=1 (true)
 					// if this field is a 'string' it can be <field> != ''
 					
 					// test against table
@@ -322,15 +328,16 @@ var nojsql = {
 					}
 
 					where_commands.push(w);
-				}else{ // special cases or long where clauses (may contain many errors: ie: 'where id >? 5 amd ')
+				}else{ // special cases or long where clauses (may contain many errors: ie: 'where id >? 5 and ')
 					where_commands.push(w);
 				}
 			}
 			// check for valid where command
 			// must have [ column - command - set ] format!?
 		}
-		if(where_commands.length)
+		if(where_commands.length){
 			console.log(where_commands);
+		}
 	},
 	getLimit: function(){
 		sql = this.getSQL();
