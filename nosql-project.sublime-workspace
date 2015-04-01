@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"logic",
+				"logic_counter"
+			],
+			[
+				"where",
+				"where_logic"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
 				"on",
 				"onreadystatechange  (variable)"
 			],
@@ -107,7 +119,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 2611,
+				"buffer_size": 2691,
 				"line_ending": "Windows"
 			}
 		},
@@ -147,7 +159,7 @@
 			"file": "nosql.engine.js",
 			"settings":
 			{
-				"buffer_size": 22473,
+				"buffer_size": 26499,
 				"line_ending": "Windows"
 			}
 		}
@@ -263,6 +275,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$');\n",
+			"validCommand",
+			"getWhere",
 			"xhttp",
 			",'');\n",
 			"errors",
@@ -317,15 +332,15 @@
 					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 2611,
+						"buffer_size": 2691,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2000,
-								2000
+								2505,
+								2505
 							]
 						],
 						"settings":
@@ -362,7 +377,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -378,7 +395,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -396,7 +413,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -405,12 +422,15 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/HTML/HTML.tmLanguage",
@@ -418,7 +438,7 @@
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 827.0,
+						"translation.y": 1202.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -473,7 +493,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -489,7 +511,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -507,7 +529,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -516,12 +538,15 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -582,7 +607,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -598,7 +625,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -616,7 +643,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -625,12 +652,15 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
@@ -691,7 +721,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -707,7 +739,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -725,7 +757,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -734,12 +766,15 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/CSS/CSS.tmLanguage",
@@ -807,7 +842,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -823,7 +860,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -841,7 +878,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -850,12 +887,15 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
@@ -878,15 +918,15 @@
 					"file": "nosql.engine.js",
 					"settings":
 					{
-						"buffer_size": 22473,
+						"buffer_size": 26499,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16656,
-								16656
+								11016,
+								11016
 							]
 						],
 						"settings":
@@ -923,7 +963,9 @@
 								"regex-selectors": "warning",
 								"rules-count": "warning",
 								"shorthand": "warning",
+								"star-property-hack": "warning",
 								"text-indent": "warning",
+								"underscore-property-hack": "warning",
 								"unique-headings": "warning",
 								"universal-selector": "warning",
 								"vendor-prefix": true,
@@ -939,7 +981,7 @@
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
-								"browser": false,
+								"browser": true,
 								"evil": true,
 								"regexdash": true,
 								"sub": true,
@@ -957,7 +999,7 @@
 							],
 							"pyflakes_ignore_import_*": true,
 							"sublimelinter": true,
-							"sublimelinter_delay": 0.0,
+							"sublimelinter_delay": 2.0,
 							"sublimelinter_disable":
 							[
 							],
@@ -966,19 +1008,22 @@
 							},
 							"sublimelinter_fill_outlines": false,
 							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
 							"sublimelinter_notes": false,
 							"sublimelinter_objj_check_ascii": false,
 							"sublimelinter_popup_errors_on_save": false,
 							"sublimelinter_syntax_map":
 							{
-								"Python Django": "python"
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 8988.0,
+						"translation.y": 878.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1025,8 +1070,8 @@
 		"rows":
 		[
 			0.0,
-			0.352042410714,
-			0.499309261587,
+			0.21539300243,
+			0.338154490877,
 			1.0
 		]
 	},
@@ -1056,6 +1101,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 127.0,
 	"status_bar_visible": true
 }
